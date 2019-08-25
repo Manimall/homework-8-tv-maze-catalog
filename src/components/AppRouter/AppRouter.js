@@ -7,14 +7,14 @@ import { Switch, Route } from "react-router-dom";
 import ShowPage from '../ShowPage';
 import Search from '../Search';
 import PageNotFound from '../PageNotFound';
-import './AppRouter.css';
+import styles from './AppRouter.module.css';
 
 
 const AppRouter = () => {
 	return (
-		<div className="App">
+		<div className={styles.App}>
 			<Switch>
-				<Route path={'/'} exact component={Search} />
+				<Route path={'/'} exact component={Search} />} />
 				<Route path={'/shows/:id'} component={ShowPage} />
 				<Route path={'*'} component={PageNotFound} />
 			</Switch>

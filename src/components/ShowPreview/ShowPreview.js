@@ -3,21 +3,18 @@
 
 import React from 'react';
 import styles from './ShowPreview.module.css';
+import {Link} from 'react-router-dom';
 
-const ShowPreview = (props) => {
-	const { id, name, image, summary } = props;
-
-	return (
-		<div className={styles.container + ' t-preview'}>
-			<div>
-				<a className="t-link" href={`/shows/${id}`}>
-					{name}
-				</a>
-				{image && <img src={image} alt={name} />}
-			</div>
-			<div dangerouslySetInnerHTML={{ __html: summary }} />
+const ShowPreview = ({ id, name, image, summary }) => (
+	<div className={`${styles.container} t-preview`}>
+		<div>
+			<Link className="t-link" to={`/shows/${id}`}>
+				{name}
+			</Link>
+			{image && <img src={image} alt={name} />}
 		</div>
-	);
-};
+		<div dangerouslySetInnerHTML={{ __html: summary }} />
+	</div>
+);
 
 export default ShowPreview;

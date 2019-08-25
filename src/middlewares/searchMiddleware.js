@@ -11,10 +11,16 @@ import { fetchMoviesBegin, fetchMoviesSuccess, fetchMoviesFailure } from '../act
 import { search } from '../api';
 
 const searchMiddleware = (store) => (next) => (action) => {
-	console.log(action);
-	console.log(store.getState());
-	console.log(fetchMoviesBegin.toString());
-	return next(action);
+	if (action.type === fetchMoviesBegin.toString()) {
+		console.log(action);
+		search(action.payload)
+			.then(data => {
+				console.log(data);
+				store.dispatch(fetchMoviesSuccess(data));
+			})
+			.catch(error => store.dispatch(fetchMoviesFailure(error)))
+	}
+	next(action);
 };
 
 export { searchMiddleware };

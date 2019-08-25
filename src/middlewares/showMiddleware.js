@@ -6,4 +6,10 @@
 
 // На забудьте вызвать метод next.
 
+import { show } from '../api';
 
+const showMiddleware = (store) => (next) => (action) => {
+	//
+};
+
+export { showMiddleware };

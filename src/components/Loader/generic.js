@@ -13,7 +13,7 @@ export const Prop = styled("h3")`
 `;
 
 export const Title = styled("h1")`
-f4 f3-ns white w-100 tc`;
+f4 f3-ns white w-100 pb-20 tc`;
 
 export const Logo = {
 	prop: "spokes",

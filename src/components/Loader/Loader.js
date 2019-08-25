@@ -1,12 +1,13 @@
 import React from "react";
 import ReactLoading from "react-loading";
 import { Section, Title, Article, Logo } from "./generic";
+import styles from './Loader.module.css';
 
 const Loader = () => {
 	const { prop } = Logo;
 
 	return (
-		<Section>
+		<Section className={styles.LoaderContainer}>
 			<Title>Please wait, we're fetching data</Title>
 			<Article key={prop}>
 				<ReactLoading

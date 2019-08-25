@@ -10,15 +10,30 @@ const shows = handleActions({
 
 // идет ли загрузка
 const isLoading = handleActions({
-	[fetchMoviesBegin]: true,
-	[fetchMoviesSuccess]: false,
-	[fetchMoviesFailure]: false,
+	[fetchMoviesBegin]: () => true,
+	[fetchMoviesSuccess]: () => false,
+	[fetchMoviesFailure]: () => false,
 }, false);
 
 // есть ли ошибка
 const error = handleActions({
-	[fetchMoviesFailure]: true,
+	[fetchMoviesFailure]: () => true,
 }, null);
+
+// selectors
+const getShows = (state) => {
+	const {shows} = state.search;
+
+	return shows.map(show => ({
+		id: show.id,
+		name: show.name,
+		summary: show.summary,
+		image: show.image.medium
+	}));
+};
+
+const getIsLoading = (state) => state.search.isLoading;
+const getError = (state) => state.search.error;
 
 export default combineReducers({
 	shows,
@@ -26,4 +41,4 @@ export default combineReducers({
 	error,
 });
 
-
+export { getShows, getIsLoading, getError };
