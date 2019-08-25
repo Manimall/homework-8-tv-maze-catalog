@@ -22,3 +22,7 @@
 .input {
   font-size: 16px;
 }
+
+.error {
+  border: 1px solid #ff0000;
+}

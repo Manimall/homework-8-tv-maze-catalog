@@ -1,0 +1,23 @@
+import React from "react";
+import ReactLoading from "react-loading";
+import { Section, Title, Article, Logo } from "./generic";
+
+const Loader = () => {
+	const { prop } = Logo;
+
+	return (
+		<Section>
+			<Title>Please wait, we're fetching data</Title>
+			<Article key={prop}>
+				<ReactLoading
+					type={prop}
+					color="#fff"
+					height={120}
+					width={120}
+				/>
+			</Article>
+		</Section>
+	);
+};
+
+export default Loader;
