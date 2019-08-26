@@ -10,17 +10,13 @@
 import { fetchMoviesBegin, fetchMoviesSuccess, fetchMoviesFailure } from '../actions/searchActions';
 import { search } from '../api';
 
-const searchMiddleware = (store) => (next) => (action) => {
+const searchMiddleware = ({dispatch}) => (next) => (action) => {
 	if (action.type === fetchMoviesBegin.toString()) {
-		console.log(action);
 		search(action.payload)
-			.then(data => {
-				console.log(data);
-				store.dispatch(fetchMoviesSuccess(data));
-			})
-			.catch(error => store.dispatch(fetchMoviesFailure(error)))
+			.then(data => dispatch(fetchMoviesSuccess(data)))
+			.catch(error => dispatch(fetchMoviesFailure(error)))
 	}
-	next(action);
+	return next(action);
 };
 
 export { searchMiddleware };

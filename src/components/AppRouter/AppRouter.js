@@ -10,16 +10,14 @@ import PageNotFound from '../PageNotFound';
 import styles from './AppRouter.module.css';
 
 
-const AppRouter = () => {
-	return (
-		<div className={styles.App}>
-			<Switch>
-				<Route path={'/'} exact component={Search} />} />
-				<Route path={'/shows/:id'} component={ShowPage} />
-				<Route path={'*'} component={PageNotFound} />
-			</Switch>
-		</div>
-	);
-};
+const AppRouter = () => (
+	<div className={styles.App}>
+		<Switch>
+			<Route path={'/'} exact component={Search} />
+			<Route path={'/shows/:id'} component={ShowPage} />
+			<Route path={'*'} component={PageNotFound} />
+		</Switch>
+	</div>
+);
 
 export default AppRouter;

@@ -4,7 +4,7 @@ const search = query =>
     mode: 'cors'
   })
     .then(response => response.json())
-    .then(shows => shows.map(show => show.show));
+    .then(shows => shows.map(item => item.show));
 
 const show = showId =>
   fetch(`http://api.tvmaze.com/shows/${showId}?embed=cast`, {

@@ -4,7 +4,7 @@
 // и экшн searchRequest.
 import {connect} from 'react-redux';
 // import { SearchPresentation } from './SearchPresentation';
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import Loader from "../Loader";
 import Error from "../Error";
 import ShowPreview from "../ShowPreview";
@@ -17,26 +17,14 @@ const Search = (props) => {
 	const {shows, isLoading, error, fetchMoviesBegin} = props;
 
 	const onChange = ({target: {value}}) => {
-		setSearchValue(value.trim());
+		setSearchValue(value);
 	};
 
 	const submitForm = (e) => {
 		e.preventDefault();
-		if (searchValue) fetchMoviesBegin(searchValue);
+		if (searchValue) fetchMoviesBegin(searchValue.trim());
 		setSearchValue(``);
 	};
-
-	const renderComponent = () => {
-		if (isLoading) return <Loader/>;
-		else return (
-			<div className={`${styles.searchPanel} t-search-result`}>
-				{shows.map(show => <ShowPreview key={show.id} {...show} />)}
-			</div>
-		);
-	};
-
-	if (error) return <Error/>;
-
 
 	return (
 		<React.Fragment>
@@ -61,7 +49,16 @@ const Search = (props) => {
 				</div>
 			</form>
 
-			{renderComponent()}
+			{(isLoading) ?
+					<Loader/> :
+					(
+						<div className={`${styles.searchPanel} t-search-result`}>
+							{shows.map(show => <ShowPreview key={show.id} {...show} />)}
+						</div>
+					)
+			}
+
+			{(error) && <Error/>}
 
 		</React.Fragment>
 	);
@@ -74,11 +71,11 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-	fetchMoviesBegin: () => dispatch(fetchMoviesBegin()),
+	fetchMoviesBegin: (value) => dispatch(fetchMoviesBegin(value)),
 });
 
 export default connect(
 	mapStateToProps,
-	mapDispatchToProps,
+	mapDispatchToProps
 )(Search);
 

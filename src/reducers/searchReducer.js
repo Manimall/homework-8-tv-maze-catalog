@@ -17,7 +17,7 @@ const isLoading = handleActions({
 
 // есть ли ошибка
 const error = handleActions({
-	[fetchMoviesFailure]: () => true,
+	[fetchMoviesFailure]: (_state, action) => action.payload,
 }, null);
 
 // selectors
@@ -35,10 +35,11 @@ const getShows = (state) => {
 const getIsLoading = (state) => state.search.isLoading;
 const getError = (state) => state.search.error;
 
+
+export { getShows, getIsLoading, getError };
+
 export default combineReducers({
 	shows,
 	isLoading,
 	error,
 });
-
-export { getShows, getIsLoading, getError };
