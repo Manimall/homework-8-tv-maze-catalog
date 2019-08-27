@@ -22,13 +22,14 @@ const error = handleActions({
 
 
 const getShow = (state) => {
-	const { singleShow } = state.shows;
-	const { _embedded: {cast} } = singleShow;
+	const { singleShow: show } = state.shows;
+	const { _embedded = {} } = show;
+	const { cast = [] } = _embedded;
 
 	return {
-		name: singleShow.name,
-		image: singleShow.image.medium,
-		show: singleShow.summary,
+		name: show.name,
+		image: show.image && show.image.medium,
+		summary: show.summary,
 		persons: cast.map(el => el.person),
 	}
 };

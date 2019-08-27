@@ -28,7 +28,7 @@ const getShows = (state) => {
 		id: show.id,
 		name: show.name,
 		summary: show.summary,
-		image: show.image.medium
+		image: show.image && show.image.medium
 	}));
 };
 
